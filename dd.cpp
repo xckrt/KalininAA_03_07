@@ -51,6 +51,7 @@ bool compareByDaysDesc(const AutoRepairShop& a, const AutoRepairShop& b) {
 }
 
 int main() {
+    setlocale(LC_ALL,"ru");
     vector<AutoRepairShop> repairs;
     int count;
 
