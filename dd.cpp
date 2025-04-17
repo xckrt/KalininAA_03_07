@@ -2,7 +2,7 @@
 #include <vector>
 #include <string>
 #include <algorithm>
-#include <cstdio>      // Для FILE, fopen, fprintf, fclose
+#include <cstdio>      
 
 using namespace std;
 
@@ -23,14 +23,14 @@ public:
     int getDays() const { return days; }
     string getPlate() const { return plate; }
 
-    // Сохранение объекта в файл
+
     void saveToFile(FILE* file) const {
         fprintf(file, "Марка: %s | Стоимость: %.2f | Дней: %d | Номер: %s\n",
             brand.c_str(), cost, days, plate.c_str());
     }
 };
 
-// Функции сравнения
+
 bool compareByBrandAsc(const AutoRepairShop& a, const AutoRepairShop& b) {
     return a.getBrand() < b.getBrand();
 }
@@ -81,7 +81,6 @@ int main() {
     cout << "Порядок:\n1 - По возрастанию\n2 - По убыванию\nВыбор: ";
     cin >> order;
 
-    // Выбор функции сравнения
     switch (sortField) {
     case 1: sort(repairs.begin(), repairs.end(), order == 1 ? compareByBrandAsc : compareByBrandDesc); break;
     case 2: sort(repairs.begin(), repairs.end(), order == 1 ? compareByCostAsc : compareByCostDesc); break;
@@ -89,7 +88,7 @@ int main() {
     default: cout << "Неверный выбор!\n"; return 1;
     }
 
-    // Сохраняем в файл
+
     FILE* file = fopen("repairs.txt", "w");
     if (!file) {
         perror("Ошибка при открытии файла");
